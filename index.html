@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090d18">
+<meta name="description" content="ORBIT AI - ブラウザ内で動く無料の会話AI">
+<title>ORBIT AI — Free Chat</title>
+<style>
+:root{color-scheme:dark;--bg:#090d18;--panel:#111827;--panel2:#172235;--line:#26344b;--text:#f3f6ff;--muted:#9ba9c0;--cyan:#73e5de;--blue:#7b9cff;--danger:#ff9b9b}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:radial-gradient(ellipse at 50% -10%,#182a49 0%,var(--bg) 52%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}body{min-height:100dvh}.app{max-width:900px;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column;padding:env(safe-area-inset-top) 14px env(safe-area-inset-bottom)}header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 2px 14px;border-bottom:1px solid #253149}.brand{display:flex;gap:11px;align-items:center}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#6be8dd,#829cff);display:grid;place-items:center;color:#07111d;font-size:22px;font-weight:900;box-shadow:0 0 28px #69e4dc30}.brand h1{font-size:17px;letter-spacing:1.8px;margin:0}.brand p{margin:4px 0 0;font-size:11px;color:var(--muted);letter-spacing:.8px}.pill{border:1px solid #2c4156;border-radius:999px;padding:7px 10px;color:var(--cyan);font-size:11px;white-space:nowrap}.hero{padding:25px 5px 17px}.eyebrow{color:var(--cyan);font-size:11px;letter-spacing:2px;font-weight:700}.hero h2{font-size:clamp(27px,7vw,42px);line-height:1.13;letter-spacing:-1px;margin:9px 0}.hero h2 span{color:var(--cyan)}.hero p{color:var(--muted);font-size:14px;line-height:1.7;margin:0;max-width:650px}.setup{background:linear-gradient(135deg,#121e30,#101725);border:1px solid var(--line);border-radius:20px;padding:15px;margin:0 0 14px}.setup-top{display:flex;align-items:center;justify-content:space-between;gap:12px}.setup h3{font-size:14px;margin:0 0 5px}.setup .small{font-size:12px;color:var(--muted);line-height:1.5}.status{font-size:12px;color:var(--cyan);margin-top:10px;line-height:1.5;overflow-wrap:anywhere}.progress{height:5px;background:#263248;border-radius:10px;overflow:hidden;margin-top:9px}.progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--blue));transition:width .25s}.btn{border:0;border-radius:12px;padding:11px 14px;font-weight:700;font-size:13px;cursor:pointer;touch-action:manipulation}.primary{background:linear-gradient(135deg,var(--cyan),#8fa8ff);color:#07121c}.secondary{background:#1b2a40;color:#e6edff;border:1px solid #31435c}.btn:disabled{opacity:.45;cursor:not-allowed}.chat{flex:1;display:flex;flex-direction:column;min-height:260px}.messages{flex:1;display:flex;flex-direction:column;gap:14px;padding:10px 0 18px}.welcome{margin:10px 0 12px;padding:19px 16px;border:1px solid var(--line);border-radius:18px;background:#0e1625d9}.welcome h3{margin:0 0 7px;font-size:16px}.welcome p{margin:0;color:var(--muted);font-size:13px;line-height:1.7}.suggestions{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}.suggestions button{border:1px solid #30415a;background:#111e31;color:#dce8fa;border-radius:999px;padding:9px 12px;font-size:12px;cursor:pointer}.msg{display:flex;gap:10px;align-items:flex-start}.avatar{width:30px;height:30px;flex:0 0 30px;border-radius:10px;display:grid;place-items:center;font-size:12px;font-weight:800;background:#1b2b40;color:var(--cyan)}.msg.user .avatar{background:#27345b;color:#d4deff}.bubble{max-width:calc(100% - 42px);font-size:14px;line-height:1.75;white-space:pre-wrap;overflow-wrap:anywhere;padding:12px 14px;border-radius:5px 16px 16px 16px;background:#121d2e;border:1px solid #25364e}.msg.user .bubble{background:#192845;border-color:#31476a;border-radius:16px 5px 16px 16px}.msg-actions{display:flex;gap:8px;margin-top:6px}.tiny{border:0;background:transparent;color:var(--muted);font-size:11px;padding:5px 0;cursor:pointer}.composer{position:sticky;bottom:0;background:linear-gradient(180deg,#090d1800,#090d18 18%);padding:10px 0 calc(10px + env(safe-area-inset-bottom));}.composer-box{border:1px solid #34445e;background:#101827;border-radius:18px;padding:9px;box-shadow:0 12px 32px #0003}.composer textarea{display:block;width:100%;resize:none;min-height:50px;max-height:130px;border:0;outline:0;background:transparent;color:var(--text);font:inherit;font-size:15px;padding:6px 6px 10px}.composer textarea::placeholder{color:#8290a7}.composer-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:0 2px}.hint{font-size:10px;color:var(--muted)}.bottom-note{text-align:center;font-size:10px;color:#718098;padding:8px 0 12px;line-height:1.5}.hidden{display:none!important}.error{color:var(--danger)}
+.mode-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:0 0 14px}.mode-tab{border:1px solid #2b3b53;background:#101827;color:#cbd7e9;border-radius:12px;padding:12px 5px;font-size:12px;font-weight:700}.mode-tab.active{background:linear-gradient(135deg,#1a3445,#24304b);border-color:#73e5de;color:#a6fff4}.tool-panel{background:linear-gradient(135deg,#111e30,#101725);border:1px solid var(--line);border-radius:20px;padding:16px;margin-bottom:14px}.panel-heading{display:flex;gap:11px;align-items:center;margin-bottom:16px}.panel-icon{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:#1b3345;color:var(--cyan);font-size:24px}.panel-heading h3{margin:0 0 4px;font-size:16px}.panel-heading p,.panel-note{font-size:12px;color:var(--muted);line-height:1.6;margin:0}.tool-panel label{display:block;color:#dce6f5;font-size:12px;font-weight:650;margin:12px 0}.tool-panel input,.tool-panel select{display:block;width:100%;margin-top:7px;background:#0b1320;border:1px solid #30415a;border-radius:11px;padding:12px;color:#f3f6ff;font:inherit;font-size:14px;min-height:43px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.wide{width:100%;margin:7px 0 12px}.panel-note{border-top:1px solid #29364b;padding-top:11px}.mode-chat .setup,.mode-chat .chat{display:flex}.mode-chat #musicPanel,.mode-chat #videoPanel{display:none!important}.mode-music .setup,.mode-video .setup,.mode-music .chat,.mode-video .chat{display:none}.mode-music #musicPanel,.mode-video #videoPanel{display:block}.mode-music .mode-tabs [data-mode="music"],.mode-video .mode-tabs [data-mode="video"]{border-color:#73e5de;color:#a6fff4;background:#1a3445}@media(min-width:650px){.app{padding-left:26px;padding-right:26px}.hero{padding-top:34px}.messages{padding-left:14px;padding-right:14px}.composer{padding-left:14px;padding-right:14px}}
+</style>
+</head>
+<body>
+<div class="app mode-chat" id="app">
+<header><div class="brand"><div class="logo">◉</div><div><h1>ORBIT AI</h1><p>PRIVATE · LOCAL · FREE</p></div></div><div class="pill">NO API KEY</div></header>
+<section class="hero"><div class="eyebrow">YOUR PERSONAL AI STUDIO</div><h2>会話も、音楽も、映像も。<br><span>ひとつのAIで。</span></h2><p>ブラウザ内のAIで会話しながら、歌詞・音楽制作プロンプト・動画生成用プロンプトも作れます。無料優先の実験的AIスタジオです。</p></section>
+<nav class="mode-tabs" aria-label="機能を選ぶ"><button class="mode-tab active" data-mode="chat">💬 チャット</button><button class="mode-tab" data-mode="music">🎵 音楽制作</button><button class="mode-tab" data-mode="video">🎬 動画制作</button></nav>
+<section id="musicPanel" class="tool-panel hidden"><div class="panel-heading"><span class="panel-icon">♫</span><div><h3>AI音楽スタジオ</h3><p>歌詞・曲構成・歌い方・音楽生成AI向けプロンプトを作成</p></div></div><label>曲のテーマ<input id="musicTheme" placeholder="例：告白する勇気が出ない恋" maxlength="240"></label><div class="form-grid"><label>ジャンル<select id="musicGenre"><option>J-POP</option><option>ラップ / ヒップホップ</option><option>ロック</option><option>バラード</option><option>アニメ主題歌</option><option>Lo-fi</option><option>EDM</option></select></label><label>雰囲気<select id="musicMood"><option>感動的で泣ける</option><option>明るく前向き</option><option>切なくエモい</option><option>かっこよく力強い</option><option>落ち着いてリラックス</option><option>壮大で映画的</option></select></label></div><label>ボーカル<select id="musicVoice"><option>女性ボーカル</option><option>男性ボーカル</option><option>男女デュエット</option><option>ラップ中心</option><option>インストゥルメンタル</option></select></label><button id="makeMusic" class="btn primary wide">歌詞と音楽プロンプトを作る</button><p class="panel-note">この機能はAIで歌詞・構成・曲調の指示文を作ります。音源そのものの自動生成は、別の音楽生成エンジンが必要です。</p></section>
+<section id="videoPanel" class="tool-panel hidden"><div class="panel-heading"><span class="panel-icon">▶</span><div><h3>AI動画スタジオ</h3><p>映像生成AIに渡すプロンプトとシーン構成を作成</p></div></div><label>作りたい動画<input id="videoIdea" placeholder="例：雨の東京で再会する二人の映画" maxlength="300"></label><div class="form-grid"><label>映像スタイル<select id="videoStyle"><option>実写映画風</option><option>日本の2Dアニメ風</option><option>3D CG映画風</option><option>ドキュメンタリー風</option><option>ファンタジー映画風</option></select></label><label>長さ<select id="videoLength"><option>6〜10秒</option><option>15〜30秒</option><option>約1分の短編構成</option><option>約5分の短編映画構成</option></select></label></div><label>画面比率<select id="videoRatio"><option>縦型 9:16（スマホ向け）</option><option>横型 16:9（映画・YouTube向け）</option><option>正方形 1:1</option></select></label><button id="makeVideo" class="btn primary wide">動画生成プロンプトを作る</button><p class="panel-note">この機能は動画の指示文・カメラ動作・シーン構成を作ります。動画ファイル自体の生成には、対応する動画AIエンジンが別途必要です。課金が必要なサービスは自動接続しません。</p></section>
+<section class="setup" aria-label="AI setup"><div class="setup-top"><div><h3>AIエンジン</h3><div class="small">初回はモデルのダウンロードが必要です。Wi-Fi接続をおすすめします。</div></div><button id="loadBtn" class="btn primary">AIを起動</button></div><div id="status" class="status">未起動 · APIキー不要</div><div class="progress"><div id="progressBar"></div></div></section>
+<main class="chat"><div id="messages" class="messages"><div id="welcome" class="welcome"><h3>何から始めますか？</h3><p>AIを起動したあと、下の入力欄から話しかけてください。最初のモデル読み込みには時間と通信量がかかることがあります。</p><div class="suggestions"><button data-prompt="日本語で、AIがどうやって文章を作るのか中学生にもわかるように説明して。">AIの仕組みを教えて</button><button data-prompt="毎日30分でできる英語の勉強計画を1週間分作って。">勉強計画を作る</button><button data-prompt="スマホだけで作れる、面白いWebサイトのアイデアを5つ考えて。">アイデアを出す</button></div></div></div>
+<div class="composer"><div class="composer-box"><textarea id="prompt" rows="1" placeholder="ORBIT AIにメッセージ…" aria-label="メッセージ"></textarea><div class="composer-bottom"><span class="hint">Enterで送信 · Shift+Enterで改行</span><button id="sendBtn" class="btn primary" disabled>送信 ↑</button></div></div><div class="bottom-note">回答は間違うことがあります。重要な内容は必ず確認してください。</div></div></main>
+</div>
+<script type="module">
+const MODEL = "Llama-3.2-1B-Instruct-q4f16_1-MLC";
+const app = document.getElementById('app');
+const $ = (id) => document.getElementById(id);
+const loadBtn = $('loadBtn'), sendBtn = $('sendBtn'), promptBox = $('prompt'), statusBox = $('status'), progressBar = $('progressBar'), messagesBox = $('messages'), welcome = $('welcome');
+let engine = null, loading = false, sending = false;
+let history = [];
+try { history = JSON.parse(localStorage.getItem('orbit-ai-history') || '[]'); } catch {}
+function setStatus(text, percent=null, isError=false){ statusBox.textContent=text; statusBox.classList.toggle('error',!!isError); if(percent!==null) progressBar.style.width=Math.max(0,Math.min(100,percent))+'%'; }
+function saveHistory(){ try { localStorage.setItem('orbit-ai-history', JSON.stringify(history.slice(-30))); } catch {} }
+function addMessage(role, text, persist=true){
+  if(welcome) welcome.classList.add('hidden');
+  const wrap=document.createElement('div'); wrap.className='msg '+(role==='user'?'user':'assistant');
+  const avatar=document.createElement('div'); avatar.className='avatar'; avatar.textContent=role==='user'?'YOU':'AI';
+  const content=document.createElement('div'); content.style.minWidth='0'; content.style.flex='1';
+  const bubble=document.createElement('div'); bubble.className='bubble'; bubble.textContent=text; content.appendChild(bubble);
+  if(role!=='user'){ const actions=document.createElement('div'); actions.className='msg-actions'; const copy=document.createElement('button'); copy.className='tiny'; copy.textContent='回答をコピー'; copy.onclick=async()=>{try{await navigator.clipboard.writeText(text);copy.textContent='コピーしました'}catch{copy.textContent='コピーできませんでした'}}; actions.appendChild(copy); content.appendChild(actions); }
+  wrap.append(avatar,content); messagesBox.appendChild(wrap); messagesBox.scrollTop=messagesBox.scrollHeight; window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+  if(persist){history.push({role,content:text});history=history.slice(-30);saveHistory();}
+  return bubble;
+}
+function renderHistory(){ if(!history.length)return; welcome.classList.add('hidden'); for(const m of history){const wrap=document.createElement('div');wrap.className='msg '+(m.role==='user'?'user':'assistant');const av=document.createElement('div');av.className='avatar';av.textContent=m.role==='user'?'YOU':'AI';const c=document.createElement('div');c.style.minWidth='0';c.style.flex='1';const b=document.createElement('div');b.className='bubble';b.textContent=m.content;c.appendChild(b);wrap.append(av,c);messagesBox.appendChild(wrap);} }
+renderHistory();
+async function loadModel(){
+ if(engine||loading)return; loading=true; loadBtn.disabled=true; loadBtn.textContent='準備中…';
+ if(!('gpu' in navigator)){setStatus('このブラウザではWebGPUが使えないようです。iOS 26以降のSafariで再度お試しください。',0,true);loadBtn.disabled=false;loadBtn.textContent='再試行';loading=false;return;}
+ try{
+  setStatus('AIエンジンを読み込んでいます…',2);
+  const {CreateMLCEngine}=await import('https://esm.run/@mlc-ai/web-llm');
+  engine=await CreateMLCEngine(MODEL,{initProgressCallback:(p)=>{const pct=Math.round((p.progress||0)*100);setStatus(p.text||'モデルをダウンロード中…',pct);}});
+  setStatus('起動完了 · メッセージを送信できます',100);loadBtn.textContent='AI起動済み';sendBtn.disabled=false;
+ }catch(err){console.error(err);engine=null;setStatus('起動できませんでした。通信環境・端末の空き容量・WebGPU対応を確認して再試行してください。詳細: '+(err?.message||String(err)).slice(0,180),0,true);loadBtn.disabled=false;loadBtn.textContent='再試行';}
+ finally{loading=false;}
+}
+async function send(){
+ const text=promptBox.value.trim(); if(!text||sending)return;
+ if(!engine){setStatus('先に「AIを起動」を押してください。',null,true);return;}
+ sending=true;sendBtn.disabled=true;promptBox.value='';promptBox.style.height='auto';addMessage('user',text);const replyBubble=addMessage('assistant','考えています…',false);let reply='';
+ const recent=history.slice(-12).map(m=>({role:m.role,content:m.content}));
+ try{
+  const stream=await engine.chat.completions.create({messages:[{role:'system',content:'あなたはORBIT AIという親切で誠実な日本語AIアシスタントです。原則として自然な日本語で、わかりやすく具体的に回答してください。確信がないことは断定せず、必要に応じて不確かだと伝えてください。' },...recent],temperature:0.7,max_tokens:500,stream:true});
+  for await(const chunk of stream){reply+=chunk.choices?.[0]?.delta?.content||'';replyBubble.textContent=reply||'…';messagesBox.scrollTop=messagesBox.scrollHeight;}
+  if(!reply.trim())reply='回答を生成できませんでした。もう一度試してください。';
+  history.push({role:'assistant',content:reply});history=history.slice(-30);saveHistory();
+  const msgWrap=replyBubble.closest('.msg');const content=msgWrap?.lastElementChild;if(content){const actions=document.createElement('div');actions.className='msg-actions';const copy=document.createElement('button');copy.className='tiny';copy.textContent='回答をコピー';copy.onclick=async()=>{try{await navigator.clipboard.writeText(reply);copy.textContent='コピーしました'}catch{copy.textContent='コピーできませんでした'}};actions.appendChild(copy);content.appendChild(actions);}
+ }catch(err){console.error(err);replyBubble.textContent='生成中にエラーが発生しました。入力を短くして再度お試しください。';setStatus('生成エラー: '+(err?.message||String(err)).slice(0,150),null,true);}
+ finally{sending=false;sendBtn.disabled=!engine;promptBox.focus();}
+}
+loadBtn.addEventListener('click',loadModel);sendBtn.addEventListener('click',send);
+document.querySelectorAll('[data-mode]').forEach(btn=>btn.addEventListener('click',()=>{const mode=btn.dataset.mode;app.classList.remove('mode-chat','mode-music','mode-video');app.classList.add('mode-'+mode);document.querySelectorAll('[data-mode]').forEach(b=>b.classList.toggle('active',b===btn));if(mode==='chat')promptBox.focus();else window.scrollTo({top:0,behavior:'smooth'});}));
+$('makeMusic').addEventListener('click',()=>{const theme=$('musicTheme').value.trim()||'心に残るオリジナル曲';const genre=$('musicGenre').value,mood=$('musicMood').value,voice=$('musicVoice').value;app.classList.remove('mode-music');app.classList.add('mode-chat');document.querySelectorAll('[data-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mode==='chat'));promptBox.value=`あなたはプロの作詞家兼音楽プロデューサーです。次の条件で、オリジナル曲を制作してください。
+テーマ：${theme}
+ジャンル：${genre}
+雰囲気：${mood}
+ボーカル：${voice}
+
+以下の順で出力してください。
+1. 曲名
+2. 曲のコンセプト
+3. 完全オリジナルの歌詞（[Intro] [Verse 1] [Pre-Chorus] [Chorus] [Verse 2] [Bridge] [Final Chorus] [Outro]などの構成ラベル付き）
+4. BPM・楽器・リズム・コード感の提案
+5. 歌い方とボーカル表現
+6. 音楽生成AIに貼り付けるための完成プロンプト（日本語と英語の要点）
+実際の音源ファイルを生成したと誤解させず、歌詞と制作指示を作ってください。` ;promptBox.dispatchEvent(new Event('input'));send();});
+$('makeVideo').addEventListener('click',()=>{const idea=$('videoIdea').value.trim()||'印象に残る短編映画';const style=$('videoStyle').value,len=$('videoLength').value,ratio=$('videoRatio').value;app.classList.remove('mode-video');app.classList.add('mode-chat');document.querySelectorAll('[data-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mode==='chat'));promptBox.value=`あなたは映画監督兼AI動画プロンプト専門家です。次の条件で、動画生成AIにそのまま貼れる具体的なプロンプトを作ってください。
+アイデア：${idea}
+映像スタイル：${style}
+目標尺：${len}
+画面比率：${ratio}
+
+以下を出力してください。
+1. 作品タイトルと短いコンセプト
+2. 完成版の動画生成プロンプト（被写体、場所、動き、カメラワーク、照明、色、雰囲気、連続性、画質、音響の指示を含む）
+3. 目標尺に合わせたシーンごとの構成と秒数
+4. ネガティブプロンプト（避けたい崩れや不自然な動き）
+5. 縦横比に合わせた撮影構図の注意
+6. 無料で試せる場合に確認すべきライセンス・利用制限の注意
+実際の動画ファイルを生成したと誤解させず、動画生成用の指示文を作ってください。` ;promptBox.dispatchEvent(new Event('input'));send();});
+promptBox.addEventListener('input',()=>{promptBox.style.height='auto';promptBox.style.height=Math.min(promptBox.scrollHeight,130)+'px';sendBtn.disabled=!engine||!promptBox.value.trim()||sending;});
+promptBox.addEventListener('keydown',(e)=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();}});
+document.querySelectorAll('[data-prompt]').forEach(b=>b.addEventListener('click',()=>{promptBox.value=b.dataset.prompt;promptBox.dispatchEvent(new Event('input'));promptBox.focus();}));
+</script>
+</body>
+</html>
